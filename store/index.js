@@ -37,4 +37,8 @@ const total1 = comprar();
 const total2 = comprar();
 const total3 = comprar();
 const total = total1 + total2 + total3;
+
+// segunda forma
+// const total = comprar() + comprar() + comprar();
+
 console.log(total);    
