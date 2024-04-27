@@ -1,5 +1,5 @@
 class Product {
-    constructor(id, titulo, descripcion, precio, oferta, images, impuesto) {
+    constructor(id, titulo, descripcion, precio, oferta, images, impuesto,  colors) {
     this.id = id;
     this.titulo = titulo;
     this.descripcion = descripcion;
@@ -7,6 +7,7 @@ class Product {
     this.oferta = oferta;
     this.images = images;
     this.impuesto = impuesto;
+    this.colors = colors;
     }     
 }
 
@@ -15,8 +16,9 @@ const laptops  = [
         "LAP360",
         "Laptop HP Pavilion x360", "Convertible 2 en 1 con pantalla táctil","$849.99",
         "50% off",
-        "./assets/mock1.jpg",
-        "Incluye impuesto País y percepción AFIP"
+        ["./assets/mock1.jpg","./assets/mock2.jpg"],
+        "Incluye impuesto País y percepción AFIP",
+        ["Azul", "Amarillo","Gris","Negro","Blanco"]
     ),
     new Product(
         "LAP13",
@@ -24,8 +26,9 @@ const laptops  = [
         "Ultrabook con pantalla InfinityEdge",
         "$1299.99",
         "50% off",
-        "./assets/mock2.jpg",
-        "Incluye impuesto País y percepción AFIP"
+        ["./assets/mock2.jpg","./assets/mock1.jpg","./assets/mock1.jpg"],
+        "Incluye impuesto País y percepción AFIP",
+        ["Amarillo","Gris","Negro","Blanco"]
     ),
     new Product(
         "LAP1",
@@ -33,8 +36,9 @@ const laptops  = [
         "Portátil empresarial ultraligero",
         "$1599.99",
         "50% off",
-        "./assets/mock1.jpg",
-        "Incluye impuesto País y percepción AFIP"
+        ["./assets/mock1.jpg","./assets/mock2.jpg","./assets/mock2.jpg"],
+        "Incluye impuesto País y percepción AFIP",
+        ["Azul","Negro","Blanco"]
     ),
     new Product(
         "LAPDuo",
@@ -42,8 +46,9 @@ const laptops  = [
         "Portátil con pantalla secundaria ScreenPad Plus",
         "$1499.99",
         "50% off",
-        "./assets/mock2.jpg",
-        "Incluye impuesto País y percepción AFIP"
+        ["./assets/mock2.jpg","./assets/mock1.jpg","./assets/mock1.jpg"],
+        "Incluye impuesto País y percepción AFIP",
+        ["Negro","Blanco"]
     ),
     new Product(
         "LAP5",
@@ -51,8 +56,9 @@ const laptops  = [
         "Ultrabook ligero con procesador Intel Core i7",
         "$999.99",
         "50% off",
-        "./assets/mock1.jpg",
-        "Incluye impuesto País y percepción AFIP"
+        ["./assets/mock1.jpg","./assets/mock2.jpg","./assets/mock2.jpg"],
+        "Incluye impuesto País y percepción AFIP",
+        ["Azul", "Amarillo","Gris","Negro","Blanco"]
     ),
     new Product(
         "LAPAPPLE",
@@ -60,8 +66,9 @@ const laptops  = [
         "Portátil potente para profesionales creativos",
         "$1799.99",
         "50% off",
-        "./assets/mock2.jpg",
-        "Incluye impuesto País y percepción AFIP"
+        ["./assets/mock2.jpg","./assets/mock1.jpg","./assets/mock1.jpg"],
+        "Incluye impuesto País y percepción AFIP",
+        ["Azul", "Amarillo","Gris","Negro","Blanco"]
     )
 ];
 
@@ -71,7 +78,7 @@ function createCard(product) {
     return `
     <article class="product-card">
         <a href="./details.html?id=${product.id}">
-            <img class="product-img" src="${product.images}" alt="${product.titulo}" />
+            <img class="product-img" src="${product.images[0]}" alt="${product.titulo}" />
             <div class="product-info">
                 <span class="product-title">${product.titulo}</span>
                 <span class="product-description">${product.descripcion}</span>
