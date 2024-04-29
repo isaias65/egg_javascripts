@@ -73,6 +73,17 @@ const laptops  = [
 ];
 
 
+
+
+    //      <div class="product-imagenes-block">
+    //     ${product.images.map((image) => `
+    //         <div class="thumbnail-container">
+    //             <img src="${image}" alt="Descripción de la imagen" onclick="cambioImagen('${image}')"/>
+    //         </div>
+    //     `).join("")}
+    //     <img class="main-image" src="${product.images[0]}" alt="" id="bigImg">
+    // </div>
+
 //obtener del buscador el id 
 const query = location.search;
 const params = new URLSearchParams(query);
@@ -83,10 +94,10 @@ function printDetails(id) {
     const product = laptops.find((each) => each.id === id);
     const detailsTemplate = `
     <div class="product-imagenes-block">
-        ${product.images.map((image) => `
-            <div class="thumbnail-container">
-                <img src="${image}" alt="Descripción de la imagen" onclick="cambioImagen('${image}')"/>
-            </div>
+        ${product.images.map(each => `
+        <div class="thumbnail-container">
+            <img src="${each}" alt="mini" onclick="changeMini(event)"/>
+        </div>
         `).join("")}
         <img class="main-image" src="${product.images[0]}" alt="" id="bigImg">
     </div>
@@ -149,5 +160,14 @@ function printDetails(id) {
     const detailsSelector = document.querySelector("#details");
     detailsSelector.innerHTML = detailsTemplate;
 }
+
+function changeMini(event) {
+    const selectedSrc = event.target.src;
+    const bigSelector = document.querySelector("#bigImg");
+    bigSelector.src = selectedSrc;
+}
+    
+    
+
 printDetails(id)
     
