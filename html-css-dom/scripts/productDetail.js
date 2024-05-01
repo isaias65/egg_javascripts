@@ -14,7 +14,7 @@ class Product {
 const laptops  = [
     new Product(
         "LAP360",
-        "Laptop HP Pavilion x360", "Convertible 2 en 1 con pantalla táctil","$849.99",
+        "Laptop HP Pavilion x360", "Convertible 2 en 1 con pantalla táctil",849.99,
         "50% off",
         ["./assets/mock1.jpg","./assets/mock2.jpg"],
         "Incluye impuesto País y percepción AFIP",
@@ -24,7 +24,7 @@ const laptops  = [
         "LAP13",
         "Laptop Dell XPS 13",
         "Ultrabook con pantalla InfinityEdge",
-        "$1299.99",
+        1299.99,
         "50% off",
         ["./assets/mock2.jpg","./assets/mock1.jpg"],
         "Incluye impuesto País y percepción AFIP",
@@ -34,7 +34,7 @@ const laptops  = [
         "LAP1",
         "Laptop Lenovo ThinkPad X1 Carbon",
         "Portátil empresarial ultraligero",
-        "$1599.99",
+        1599.99,
         "50% off",
         ["./assets/mock1.jpg","./assets/mock2.jpg"],
         "Incluye impuesto País y percepción AFIP",
@@ -44,7 +44,7 @@ const laptops  = [
         "LAPDuo",
         "Laptop Asus ZenBook Duo",
         "Portátil con pantalla secundaria ScreenPad Plus",
-        "$1499.99",
+        1499.99,
         "50% off",
         ["./assets/mock2.jpg","./assets/mock1.jpg"],
         "Incluye impuesto País y percepción AFIP",
@@ -54,7 +54,7 @@ const laptops  = [
         "LAP5",
         "Laptop Acer Swift 5",
         "Ultrabook ligero con procesador Intel Core i7",
-        "$999.99",
+        999.99,
         "50% off",
         ["./assets/mock1.jpg","./assets/mock2.jpg","./assets/mock2.jpg"],
         "Incluye impuesto País y percepción AFIP",
@@ -64,7 +64,7 @@ const laptops  = [
         "LAPAPPLE",
         "Laptop Apple MacBook Pro",
         "Portátil potente para profesionales creativos",
-        "$1799.99",
+        1799.99,
         "50% off",
         ["./assets/mock2.jpg","./assets/mock1.jpg"],
         "Incluye impuesto País y percepción AFIP",
@@ -106,7 +106,7 @@ function printDetails(id) {
         <form action="#" class="selector">
             <fieldset>
                 <label class="label">Color</label>
-                <select type="text" placeholder="Selecciona un color">
+                <select type="text" placeholder="Selecciona un color" id="color-">
                     ${product.colors.map(
                     (each) => `<option value=${each}>${each}</option>`
                     ).join("")}
@@ -121,7 +121,7 @@ function printDetails(id) {
     <div class="product-checkout-block">
         <div class="checkout-container">
             <span class="chackout-total-label">Total:</span>
-            <h2 class="checkout-total-price">${product.precio}</h2>
+            <h2 class="checkout-total-price" id="price">$${product.precio}</h2>
             <p class="checkout-description">
                 Incluye impuesto PAIS y percepción AFIP. Podés recuperar AR$ 50711
                 haciendo la solicitud en AFIP.
@@ -147,11 +147,11 @@ function printDetails(id) {
             </ul>
             <div class="checkout-process">
                 <div class="top">
-                    <input type="number" value="1" />
+                    <input type="number" value="1" min="1" id="quantity-" onclick="changePrice(event)"/>
                     <button class="btn-primary">Comprar</button>
                 </div>
                 <div class="bottom">
-                    <button class="btn-outline">Añadir al Carrito</button>
+                    <button class="btn-outline" onclick="saveProduct('${id}')">Añadir al Carrito</button>
                 </div>
             </div>
         </div>
@@ -166,7 +166,36 @@ function changeMini(event) {
     const bigSelector = document.querySelector("#bigImg");
     bigSelector.src = selectedSrc;
 }
+
+function changePrice(event){
+    const quantity = event.target.value;
+    const product = laptops.find(product => product.id == id);
+    const priceSelector = document.querySelector("#price");
+    priceSelector.innerHTML = `$${quantity * product.precio}`;
+}
+
+function saveProduct(id) {
+    const found = laptops.find((each) => each.id === id);
+    const product = {
+        id: id,
+        title: found.titulo,
+        price: found.precio,
+        image: found.images[0],
+        color: document.querySelector("#color-").value,
+        quantity: document.querySelector("#quantity-").value,
+        // color: document.querySelector("#color-" + id).value,
+        // quantity: document.querySelector("#quantity-" + id).value,
+    };
+    // const stringifyProduct = JSON.stringify(product);
+    // localStorage.setItem("cart", stringifyProduct);
     
+    // Para la primera vez se necesita indicar q si no existe q sea un array vacio
+    let cart = JSON.parse(localStorage.getItem("cart")) || []; 
+
+    cart.push(product);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
     
 
 printDetails(id)
