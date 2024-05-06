@@ -112,82 +112,159 @@ section {
 
 /* diseño principal tarjeta-producto */
 main {
-    /* border: 1px solid blue; */
     height: auto;
 }
-.product-price-block {
-    display: flex;
-    margin: 5px 0;
-    justify-content: space-between;
-    align-items: center;
+.product-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: row;
+    grid-auto-rows: minmax(auto, max-content);
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .product-card{
     background-color: #f0f0f0;
     border-radius: 14px;
-    /* max-width: 25%; */
-    width: auto;
-    overflow: hidden; /*la imagen no sobrepase los bordes redondeados */
-}
-.product-container .product-card a{
-    color: initial;
-    text-decoration: none;
-}
-.product-info{
-    padding: 20px;
+    /* width: 710px; */
+    max-width: 100%;
     box-sizing: border-box;
 }
-.product-title{
-    word-wrap: break-word; /*evitar el texto se desborde de su contenedor*/
-    display: block;
-    line-height: 22px;
-    font-size: 22px;
+/* .product-card .container-product-card{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    text-decoration: none;
+}  */
+
+.product-card a{
+    /* display: grid;
+    grid-template-columns: repeat(3,1fr);
+    text-decoration: none; */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+} 
+.product-info{
+    width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: black;
 }
 .product-description{
     font-weight: 400;
     font-size: 14px;
     color: #1c1c1cbc;
     display: block;
-    margin-bottom: 14px;
+    margin-bottom: 5px;
 }
-.product-tax-policy{
-    font-weight: 100;
+.product-info input{
+    width: 80px;
+    height: 28px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+}
+.product-title{
+    word-wrap: break-word; /*evitar el texto se desborde de su contenedor*/
+    display: block;
+    line-height: 22px;
+    font-size: 20px;
+}
+.product-price-block {
+    display: flex;
+    margin: 0px 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+.product-price-block .price {
+    font-size: 17px;
+    font-weight: 700;
+    color: black;
+    flex: 1;
+}
+
+.product-img img{
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/*fin diseño de productos */
+
+/* diseño de resumen pedido */
+.cart-resumen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 14px;
+    width: 400px;
+    padding: 0;
+}
+.container-resumen-cart{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.cart-title{
+    line-height: 22px;
+    font-size: 22px;
+    text-align: center;
+}
+.container-cart-price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 25px 0px;
+}
+.container-cart-price .cart-price{
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 17px;
+}
+.container-cart-policy{
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 400;
     font-size: 14px;
     color: #1c1c1cbc;
 }
-.product-price-block .price {
-    font-size: 22px;
-    font-weight: 700;
-    flex: 1;
+.container-buton{
+    display: flex;
+    justify-content: center;
+    padding: 0px 10px;
 }
-.product-price-block .discount {
-    font-size: 12px;
-    font-weight: 700;
-    color: #428f13;
+.container-buton button{
+    background-color: #ff3b3c;
+    border: 1px solid red;
+    color: white;
+    width: 80%;
+    height: 35px;
+    border-radius: 10px;
+    font-size: 15px;
+    align-items: center;
+    font-weight: 500;
+    line-height: 15px;
 }
-.product-img{
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    object-position: center center;
-}
-.product-container{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 20px;
-}
-/*fin diseño de productos */
+/* diseño de resumen pedido */
 
 
 /* diseño pie pagina */
 footer {
     /* border: 1px solid #009145;*/ /*Hexadecimal color code */
-    min-height: 368px; /* su tamaño es 368, pero si su contenido es mas grande el footer crece*/
+    min-height: 308px; /* su tamaño es 368, pero si su contenido es mas grande el footer crece*/
     background-color: #7525a7;
+    
 }
 footer .container{
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
 }
 .columns-container{
     flex: 1;
